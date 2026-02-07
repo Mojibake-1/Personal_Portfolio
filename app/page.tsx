@@ -214,13 +214,13 @@ export default async function HomePage({
           <p className="label">{lang === "zh" ? "公益站预览" : "PUBLIC SITE PREVIEW"}</p>
           <div className="site-preview-wrap">
             <iframe
-              src="https://allinone-new-psi.vercel.app/"
+              src="https://allinone.001027.xyz/"
               title={lang === "zh" ? "AI 公益站预览" : "AI Public-Benefit Site Preview"}
               className="site-preview-frame"
               loading="lazy"
             />
           </div>
-          <a href="https://allinone-new-psi.vercel.app/" target="_blank" rel="noreferrer" className="site-preview-link">
+          <a href="https://allinone.001027.xyz/" target="_blank" rel="noreferrer" className="site-preview-link">
             {lang === "zh" ? "打开公益站" : "Open Site"}
           </a>
         </section>
