@@ -6,6 +6,10 @@
   --muted: #7f7669;
   --accent: #a74237;
   --accent-soft: #c17f77;
+  --font-readable: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --font-serif: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --font-signature: "Kaiti SC", "STKaiti", cursive;
 }
 
 * {
