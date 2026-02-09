@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap");
+
 :root {
   --bg: #070809;
   --card: #f2efe8;
@@ -9,7 +11,7 @@
   --font-readable: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
   --font-serif: "Noto Serif SC", "Songti SC", "STSong", serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  --font-signature: "Kaiti SC", "STKaiti", cursive;
+  --font-signature: "Caveat", "Kaiti SC", "STKaiti", cursive;
 }
 
 * {
