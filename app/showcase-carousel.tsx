@@ -88,7 +88,7 @@ export default function ShowcaseCarousel({ lang }: { lang: Lang }) {
                 : "Your browser does not support the video tag."}
             </video>
           </div>
-          <p className="showcase-caption">veo3.1 制作</p>
+          <p className="showcase-caption">{lang === "zh" ? "VEO 3.1 制作" : "Made with VEO 3.1"}</p>
         </div>
 
         <div className="showcase-item" hidden={activeIndex !== 1}>
