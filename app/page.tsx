@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ShowcaseCarousel from "./showcase-carousel";
 
 type Lang = "en" | "zh";
 
@@ -206,52 +207,9 @@ export default async function HomePage({
           </div>
         </section>
 
-        <section className="block reveal delay-5" id="video">
-          <p className="label">{lang === "zh" ? "视频展示" : "VIDEO SHOWCASE"}</p>
-          <div className="video-wrap">
-            <video
-              controls
-              preload="metadata"
-              playsInline
-              className="feature-video"
-              poster="/videos/ai-marketing-poster.jpg"
-            >
-              <source src="/videos/ai-marketing-demo.mp4" type="video/mp4" />
-              {lang === "zh"
-                ? "你的浏览器不支持 video 标签，请更新浏览器。"
-                : "Your browser does not support the video tag."}
-            </video>
-          </div>
-        </section>
+        <ShowcaseCarousel lang={lang} />
 
-        <section className="block reveal delay-6" id="amazon-ads-demo">
-          <p className="label">{lang === "zh" ? "Amazon Ads 演示" : "AMAZON ADS DEMO"}</p>
-          <div className="video-wrap video-wrap-wide">
-            <video controls preload="metadata" playsInline className="feature-video feature-video-wide">
-              <source src="/videos/amazon-ads-demo.mp4" type="video/mp4" />
-              {lang === "zh"
-                ? "你的浏览器不支持 video 标签，请更新浏览器。"
-                : "Your browser does not support the video tag."}
-            </video>
-          </div>
-        </section>
-
-        <section className="block reveal delay-7" id="site-preview">
-          <p className="label">{lang === "zh" ? "公益站预览" : "PUBLIC SITE PREVIEW"}</p>
-          <div className="site-preview-wrap">
-            <iframe
-              src="https://allinone.001027.xyz/"
-              title={lang === "zh" ? "AI 公益站预览" : "AI Public-Benefit Site Preview"}
-              className="site-preview-frame"
-              loading="lazy"
-            />
-          </div>
-          <a href="https://allinone.001027.xyz/" target="_blank" rel="noreferrer" className="site-preview-link">
-            {lang === "zh" ? "打开公益站" : "Open Site"}
-          </a>
-        </section>
-
-        <section className="block reveal delay-8" id="contact">
+        <section className="block reveal delay-6" id="contact">
           <p className="label">{t.contactLabel}</p>
           <p className="lead compact">{t.contactLead}</p>
           <div className="cta-row">
