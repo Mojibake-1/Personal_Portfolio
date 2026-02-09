@@ -250,6 +250,10 @@ button {
   margin-inline: auto;
 }
 
+.video-wrap-wide {
+  width: min(100%, 820px);
+}
+
 .feature-video {
   width: 100%;
   height: auto;
@@ -261,6 +265,10 @@ button {
   background: #121212;
   object-fit: contain;
   object-position: center;
+}
+
+.feature-video-wide {
+  aspect-ratio: 16 / 9;
 }
 
 .site-preview-wrap {
@@ -393,6 +401,10 @@ button {
 
 .delay-7 {
   animation-delay: 0.68s;
+}
+
+.delay-8 {
+  animation-delay: 0.78s;
 }
 
 @keyframes rise {
