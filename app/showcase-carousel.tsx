@@ -60,7 +60,7 @@ export default function ShowcaseCarousel({ lang }: { lang: Lang }) {
   };
 
   return (
-    <section className="block reveal delay-5 showcase-carousel" id="showcase">
+    <section className="block reveal delay-7 showcase-carousel" id="showcase">
       <div className="showcase-anchors" aria-hidden="true">
         {slides.map((slide) => (
           <span key={slide.id} id={slide.id} className="showcase-anchor" />
