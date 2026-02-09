@@ -113,13 +113,13 @@ export default function ShowcaseCarousel({ lang }: { lang: Lang }) {
         <div className="showcase-item" hidden={activeIndex !== 2}>
           <div className="site-preview-wrap">
             <iframe
-              src="https://allinone-new-psi.vercel.app/"
+              src="https://allinone.001027.xyz/"
               title={lang === "zh" ? "AI 公益站预览" : "AI Public-Benefit Site Preview"}
               className="site-preview-frame"
               loading="lazy"
             />
           </div>
-          <a href="https://allinone-new-psi.vercel.app/" target="_blank" rel="noreferrer" className="site-preview-link">
+          <a href="https://allinone.001027.xyz/" target="_blank" rel="noreferrer" className="site-preview-link">
             {lang === "zh" ? "打开公益站" : "Open Site"}
           </a>
         </div>
