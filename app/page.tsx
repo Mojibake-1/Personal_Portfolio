@@ -98,7 +98,7 @@ const copyByLang: Record<Lang, Copy> = {
       result:
         "Compressed decision time to one short review pass and generated reusable optimization suggestions for continuous campaign updates.",
       tags: ["Amazon Ads", "Search Terms", "LLM Ops"],
-      link: "#amazon-ads-case",
+      link: "#amazon-ads-demo",
       linkText: "View Case",
       note: "Note: case data is desensitized; process logic and interaction flow are preserved.",
       metrics: [
@@ -183,7 +183,7 @@ const copyByLang: Record<Lang, Copy> = {
       result:
         "将优化动作压缩为一次短评审，持续沉淀可复用的建议清单，支持广告账户滚动更新。",
       tags: ["Amazon Ads", "搜索词分析", "自动化优化"],
-      link: "#amazon-ads-case",
+      link: "#amazon-ads-demo",
       linkText: "查看案例",
       note: "注：案例数据已脱敏，仅保留真实流程与交互逻辑。",
       metrics: [
