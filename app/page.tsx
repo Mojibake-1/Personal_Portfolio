@@ -149,7 +149,7 @@ const copyByLang: Record<Lang, Copy> = {
     ],
     phoneText: phoneDisplay,
     emailText: email,
-    contactLead: "可合作方向：AI + 电商内容生产、增长与运营。",
+    contactLead: "可合作方向：AI + 电商内容生产，提效、增长与运营。",
     works: [
       {
         title: "AI 营销视频",
