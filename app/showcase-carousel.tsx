@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 type Lang = "en" | "zh";
 
-const slideOrder = ["video", "amazon-ads-demo", "site-preview"] as const;
+const slideOrder = ["video", "amazon-ads-case", "site-preview"] as const;
 type SlideId = (typeof slideOrder)[number];
 
 export default function ShowcaseCarousel({ lang }: { lang: Lang }) {
@@ -16,15 +16,18 @@ export default function ShowcaseCarousel({ lang }: { lang: Lang }) {
       [
         {
           id: "video" as SlideId,
-          label: lang === "zh" ? "视频展示" : "VIDEO SHOWCASE"
+          label: lang === "zh" ? "AI 视频" : "AI Videos",
+          caption: lang === "zh" ? "VEO 3.1 制作 · 视频已压缩用于网页加载" : "Made with VEO 3.1 · Video compressed for web delivery"
         },
         {
-          id: "amazon-ads-demo" as SlideId,
-          label: lang === "zh" ? "Amazon Ads 演示" : "AMAZON ADS DEMO"
+          id: "amazon-ads-case" as SlideId,
+          label: lang === "zh" ? "广告优化台" : "Ads Console",
+          caption: lang === "zh" ? "Search Term 周度优化流程" : "Weekly Search Term Optimization Loop"
         },
         {
           id: "site-preview" as SlideId,
-          label: lang === "zh" ? "公益站预览" : "PUBLIC SITE PREVIEW"
+          label: lang === "zh" ? "公益站预览" : "Public Site",
+          caption: lang === "zh" ? "公益站在线预览" : "Live Site Preview"
         }
       ],
     [lang]
@@ -60,14 +63,32 @@ export default function ShowcaseCarousel({ lang }: { lang: Lang }) {
   };
 
   return (
-    <section className="block reveal delay-7 showcase-carousel" id="showcase">
+    <section className="block chapter reveal delay-7 showcase-carousel" id="showcase">
+      <div className="section-head section-head-center">
+        <span className="section-index">03</span>
+        <p className="label">{lang === "zh" ? "实证展示" : "EVIDENCE REEL"}</p>
+      </div>
+
       <div className="showcase-anchors" aria-hidden="true">
         {slides.map((slide) => (
           <span key={slide.id} id={slide.id} className="showcase-anchor" />
         ))}
       </div>
 
-      <p className="label">{slides[activeIndex]?.label}</p>
+      <div className="showcase-nav" aria-label={lang === "zh" ? "项目展示切换" : "Showcase switcher"}>
+        {slides.map((slide, index) => (
+          <button
+            key={slide.id}
+            type="button"
+            onClick={() => setActiveSlide(index)}
+            className={index === activeIndex ? "showcase-tab is-active" : "showcase-tab"}
+            aria-label={lang === "zh" ? `切换到${slide.label}` : `Switch to ${slide.label}`}
+            aria-current={index === activeIndex ? "true" : undefined}
+          >
+            {slide.label}
+          </button>
+        ))}
+      </div>
 
       <div className="showcase-stage">
         <div className="showcase-item" hidden={activeIndex !== 0}>
@@ -82,13 +103,12 @@ export default function ShowcaseCarousel({ lang }: { lang: Lang }) {
               className="feature-video"
               poster="/videos/ai-marketing-poster.jpg"
             >
-              <source src="/videos/ai-marketing-demo.mp4" type="video/mp4" />
+              <source src="/videos/ai-marketing-case.mp4" type="video/mp4" />
               {lang === "zh"
                 ? "你的浏览器不支持 video 标签，请更新浏览器。"
                 : "Your browser does not support the video tag."}
             </video>
           </div>
-          <p className="showcase-caption">{lang === "zh" ? "VEO 3.1 制作" : "Made with VEO 3.1"}</p>
         </div>
 
         <div className="showcase-item" hidden={activeIndex !== 1}>
@@ -102,7 +122,7 @@ export default function ShowcaseCarousel({ lang }: { lang: Lang }) {
               playsInline
               className="feature-video feature-video-wide"
             >
-              <source src="/videos/amazon-ads-demo.mp4" type="video/mp4" />
+              <source src="/videos/amazon-ads-case.mp4" type="video/mp4" />
               {lang === "zh"
                 ? "你的浏览器不支持 video 标签，请更新浏览器。"
                 : "Your browser does not support the video tag."}
@@ -125,18 +145,7 @@ export default function ShowcaseCarousel({ lang }: { lang: Lang }) {
         </div>
       </div>
 
-      <div className="showcase-dots" aria-label={lang === "zh" ? "项目展示切换" : "Showcase switcher"}>
-        {slides.map((slide, index) => (
-          <button
-            key={slide.id}
-            type="button"
-            onClick={() => setActiveSlide(index)}
-            className={index === activeIndex ? "showcase-dot is-active" : "showcase-dot"}
-            aria-label={lang === "zh" ? `切换到${slide.label}` : `Switch to ${slide.label}`}
-            aria-current={index === activeIndex ? "true" : undefined}
-          />
-        ))}
-      </div>
+      <p className="showcase-caption">{slides[activeIndex]?.caption}</p>
     </section>
   );
 }
