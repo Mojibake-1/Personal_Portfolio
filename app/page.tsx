@@ -49,6 +49,13 @@ const copyByLang: Record<Lang, Copy> = {
         linkText: "Watch Video"
       },
       {
+        title: "Amazon Ads Optimization Console Demo",
+        desc: "Processes Search Term Report in a weekly loop: Excel calculates CTR/CVR/ACOS and waste priority, then an LLM classifies relevance and intent to output negative keywords plus bid and match-type recommendations.",
+        tags: ["Amazon Ads", "Search Terms", "LLM Ops"],
+        link: "#amazon-ads-demo",
+        linkText: "Watch Demo"
+      },
+      {
         title: "AI Public-Benefit Website",
         desc: "Built and operated an AI public-benefit site, with stable service pages for users and campus communities.",
         tags: ["Web", "AI", "Operations"],
@@ -75,6 +82,13 @@ const copyByLang: Record<Lang, Copy> = {
         tags: ["AI 视频", "跨境电商", "内容运营"],
         link: "#video",
         linkText: "观看视频"
+      },
+      {
+        title: "Amazon Ads 优化台 Demo",
+        desc: "周度处理 Search Term Report：Excel 算 CTR/CVR/ACOS 与浪费优先级，大模型判相关性和意图，自动给出否定词与高转化词出价/匹配建议。",
+        tags: ["Amazon Ads", "搜索词分析", "自动化优化"],
+        link: "#amazon-ads-demo",
+        linkText: "观看演示"
       },
       {
         title: "AI 公益站页面",
@@ -210,22 +224,34 @@ export default async function HomePage({
           </div>
         </section>
 
-        <section className="block reveal delay-6" id="site-preview">
+        <section className="block reveal delay-6" id="amazon-ads-demo">
+          <p className="label">{lang === "zh" ? "Amazon Ads 演示" : "AMAZON ADS DEMO"}</p>
+          <div className="video-wrap video-wrap-wide">
+            <video controls preload="metadata" playsInline className="feature-video feature-video-wide">
+              <source src="/videos/amazon-ads-demo.mp4" type="video/mp4" />
+              {lang === "zh"
+                ? "你的浏览器不支持 video 标签，请更新浏览器。"
+                : "Your browser does not support the video tag."}
+            </video>
+          </div>
+        </section>
+
+        <section className="block reveal delay-7" id="site-preview">
           <p className="label">{lang === "zh" ? "公益站预览" : "PUBLIC SITE PREVIEW"}</p>
           <div className="site-preview-wrap">
             <iframe
-              src="https://allinone.001027.xyz/"
+              src="https://allinone-new-psi.vercel.app/"
               title={lang === "zh" ? "AI 公益站预览" : "AI Public-Benefit Site Preview"}
               className="site-preview-frame"
               loading="lazy"
             />
           </div>
-          <a href="https://allinone.001027.xyz/" target="_blank" rel="noreferrer" className="site-preview-link">
+          <a href="https://allinone-new-psi.vercel.app/" target="_blank" rel="noreferrer" className="site-preview-link">
             {lang === "zh" ? "打开公益站" : "Open Site"}
           </a>
         </section>
 
-        <section className="block reveal delay-7" id="contact">
+        <section className="block reveal delay-8" id="contact">
           <p className="label">{t.contactLabel}</p>
           <p className="lead compact">{t.contactLead}</p>
           <div className="cta-row">
