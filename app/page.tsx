@@ -1,108 +1,85 @@
 import Link from "next/link";
 import ShowcaseCarousel from "./showcase-carousel";
-import type { IconType } from "react-icons";
-import {
-  SiAdobephotoshop,
-  SiAmazonwebservices,
-  SiCanva,
-  SiCloudflare,
-  SiCloudflareworkers,
-  SiClaude,
-  SiDiscord,
-  SiDocker,
-  SiGoogleads,
-  SiGoogleanalytics,
-  SiGooglecloud,
-  SiLinux,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiNotion,
-  SiOpenai,
-  SiPython,
-  SiReact,
-  SiSlack,
-  SiTailwindcss,
-  SiTelegram,
-  SiTypescript,
-  SiVercel
-} from "react-icons/si";
 
 type Lang = "en" | "zh";
 
-type Work = {
+type CaseMetric = {
+  label: string;
+  value: string;
+};
+
+type LeadCase = {
   title: string;
   desc: string;
+  challenge: string;
+  method: string;
+  result: string;
+  tags: string[];
+  link: string;
+  linkText: string;
+  note: string;
+  metrics: CaseMetric[];
+};
+
+type SupportCase = {
+  title: string;
+  desc: string;
+  evidence: string;
   tags: string[];
   link: string;
   linkText: string;
 };
 
-type BadgeItem = {
-  name: string;
-  icon: IconType;
-  tone: string;
+type Capability = {
+  pillar: string;
+  title: string;
+  summary: string;
+  highlights: string[];
+  tools: string[];
+  outcome: string;
 };
 
 type Copy = {
   displayName: string;
   introLabel: string;
   worksLabel: string;
-  stackLabel: string;
-  toolboxLabel: string;
+  matrixLabel: string;
   contactLabel: string;
+  caseLeadLabel: string;
+  caseProblemLabel: string;
+  caseMethodLabel: string;
+  caseResultLabel: string;
+  matrixLead: string;
   positioningTitle: string;
   positioningSubtitle: string;
   positioningProofs: string[];
   phoneText: string;
   emailText: string;
   contactLead: string;
-  works: Work[];
+  leadCase: LeadCase;
+  supportCases: SupportCase[];
+  capabilities: Capability[];
 };
 
 const phoneRaw = "+8617301734842";
 const phoneDisplay = "+86 173 0173 4842";
 const email = "lyh20223988@gmail.com";
 
-const techStack: BadgeItem[] = [
-  { name: "TypeScript", icon: SiTypescript, tone: "#3178c6" },
-  { name: "React", icon: SiReact, tone: "#61dafb" },
-  { name: "Next.js", icon: SiNextdotjs, tone: "#1d1d1d" },
-  { name: "Node.js", icon: SiNodedotjs, tone: "#5fa04e" },
-  { name: "Tailwind CSS", icon: SiTailwindcss, tone: "#38bdf8" },
-  { name: "Python", icon: SiPython, tone: "#3776ab" },
-  { name: "Docker", icon: SiDocker, tone: "#2496ed" },
-  { name: "Linux", icon: SiLinux, tone: "#111111" },
-  { name: "Vercel", icon: SiVercel, tone: "#111111" },
-  { name: "Cloudflare", icon: SiCloudflare, tone: "#f38020" },
-  { name: "Cloudflare Workers", icon: SiCloudflareworkers, tone: "#f38020" },
-  { name: "Google Cloud", icon: SiGooglecloud, tone: "#4285f4" },
-  { name: "AWS", icon: SiAmazonwebservices, tone: "#ff9900" }
-];
-
-const toolbox: BadgeItem[] = [
-  { name: "OpenAI / Codex", icon: SiOpenai, tone: "#111111" },
-  { name: "Claude", icon: SiClaude, tone: "#d97757" },
-  { name: "Photoshop", icon: SiAdobephotoshop, tone: "#31a8ff" },
-  { name: "Canva", icon: SiCanva, tone: "#00c4cc" },
-  { name: "Notion", icon: SiNotion, tone: "#1f1f1f" },
-  { name: "Google Ads", icon: SiGoogleads, tone: "#4285f4" },
-  { name: "Google Analytics", icon: SiGoogleanalytics, tone: "#e37400" },
-  { name: "Slack", icon: SiSlack, tone: "#4a154b" },
-  { name: "Telegram", icon: SiTelegram, tone: "#229ed9" },
-  { name: "Discord", icon: SiDiscord, tone: "#5865f2" }
-];
-
 const copyByLang: Record<Lang, Copy> = {
   en: {
     displayName: "Li Yuanhao",
     introLabel: "ABOUT",
-    worksLabel: "WORKS",
-    stackLabel: "TECH STACK",
-    toolboxLabel: "TOOLBOX",
+    worksLabel: "CASE STUDIES",
+    matrixLabel: "CAPABILITY MATRIX",
     contactLabel: "CONTACT",
+    caseLeadLabel: "Lead Case",
+    caseProblemLabel: "Problem",
+    caseMethodLabel: "Method",
+    caseResultLabel: "Result",
+    matrixLead: "Organized by repeatable capability modules, each mapped to real delivery tools and outcomes.",
     positioningTitle: "AI-Driven Cross-Border Ecommerce Operator",
     positioningSubtitle:
-      "Focused on content production, ad optimization, and data automation, turning ideas into practical outcomes in lean teams.",
+      "Focused on content production, ad optimization, and data automation, turning ideas into practical outcomes in teams.",
     positioningProofs: [
       "Can automate batch production of short videos, English copy, and ad optimization suggestions.",
       "Built an AI community from 0 to 1, growing naturally to 1,000+ users.",
@@ -111,39 +88,83 @@ const copyByLang: Record<Lang, Copy> = {
     phoneText: phoneDisplay,
     emailText: email,
     contactLead: "Open to collaboration in AI + ecommerce content and product operations.",
-    works: [
+    leadCase: {
+      title: "Amazon Ads Optimization Console",
+      desc: "Turned weekly Search Term Reports into execution-ready keyword actions instead of manual spreadsheet reading.",
+      challenge:
+        "Search terms, CTR/CVR/ACOS, and spending waste were split across sheets, so each optimization round cost heavy manual judgment.",
+      method:
+        "Built a weekly loop: Excel calculates priority scores, then an LLM classifies relevance and intent to produce negative keyword and bid recommendations.",
+      result:
+        "Compressed decision time to one short review pass and generated reusable optimization suggestions for continuous campaign updates.",
+      tags: ["Amazon Ads", "Search Terms", "LLM Ops"],
+      link: "#amazon-ads-case",
+      linkText: "View Case",
+      note: "Note: case data is desensitized; process logic and interaction flow are preserved.",
+      metrics: [
+        { label: "Weekly Scope", value: "2,000+ Terms" },
+        { label: "Round Duration", value: "< 20 min" },
+        { label: "Outputs", value: "Negatives + Bid Actions" }
+      ]
+    },
+    supportCases: [
       {
         title: "AI Marketing Videos",
-        desc: "Produced product marketing short videos in batches using Jianying, AI voiceover, and AI digital avatars.",
+        desc: "Batch-produced product marketing videos with Jianying, AI voiceovers, and digital avatars.",
+        evidence: "Delivered repeatable content templates for ongoing listing and ad creative needs.",
         tags: ["AI Video", "Ecommerce", "Content Ops"],
         link: "#video",
         linkText: "Watch Video"
       },
       {
-        title: "Amazon Ads Optimization Console Demo",
-        desc: "Processes Search Term Report in a weekly loop: Excel calculates CTR/CVR/ACOS and waste priority, then an LLM classifies relevance and intent to output negative keywords plus bid and match-type recommendations.",
-        tags: ["Amazon Ads", "Search Terms", "LLM Ops"],
-        link: "#amazon-ads-demo",
-        linkText: "Watch Demo"
-      },
-      {
         title: "AI Public-Benefit Website",
-        desc: "Built and operated an AI public-benefit site, with stable service pages for users and campus communities.",
+        desc: "Built and operated an AI public-benefit site with stable access pages for users and campus communities.",
+        evidence: "Maintained continuous operations while monetizing selected service modules.",
         tags: ["Web", "AI", "Operations"],
         link: "#site-preview",
         linkText: "View Preview"
+      }
+    ],
+    capabilities: [
+      {
+        pillar: "Pillar 01",
+        title: "Creative Intelligence Studio",
+        summary: "Orchestrate scripts, visual assets, and AI voice tracks into campaign-ready content packages.",
+        highlights: ["Batch output across listing, social, and ad channels.", "Template libraries for consistently faster launches."],
+        tools: ["OpenAI / Codex", "Claude", "Canva", "Photoshop", "Jianying"],
+        outcome: "Outcome: weekly creative assets delivered with stable quality and shorter prep cycles."
+      },
+      {
+        pillar: "Pillar 02",
+        title: "Performance Decision Engine",
+        summary: "Convert raw search-term data into ranked actions for negative keywords and bid adjustments.",
+        highlights: ["Weekly intent clustering and waste-term elimination.", "Reusable scoring logic for iteration rhythm."],
+        tools: ["Amazon Ads", "Excel", "Python", "Google Analytics"],
+        outcome: "Outcome: optimization rounds move from manual scanning to focused decision review."
+      },
+      {
+        pillar: "Pillar 03",
+        title: "Commerce Delivery System",
+        summary: "Keep pages, scripts, and operating workflows stable while shipping quickly in teams.",
+        highlights: ["Deploy lean product pages and practical utilities.", "Synchronize docs, prompts, and execution rituals."],
+        tools: ["Next.js", "Node.js", "Cloudflare Workers", "Vercel", "Notion", "Slack"],
+        outcome: "Outcome: continuous delivery with fewer handoff gaps across content and operations."
       }
     ]
   },
   zh: {
     displayName: "Li Yuanhao",
     introLabel: "关于",
-    worksLabel: "作品",
-    stackLabel: "技术栈",
-    toolboxLabel: "工具箱",
+    worksLabel: "案例研究",
+    matrixLabel: "能力矩阵",
     contactLabel: "联系",
+    caseLeadLabel: "主案例",
+    caseProblemLabel: "问题",
+    caseMethodLabel: "方法",
+    caseResultLabel: "结果",
+    matrixLead: "以三大能力单元组织交付体系，直接对应真实业务场景与工具链。",
     positioningTitle: "AI 驱动的跨境电商运营",
-    positioningSubtitle: "聚焦内容生产、广告优化与数据自动化，在小团队里快速把想法落地成结果。",
+    positioningSubtitle: "聚焦内容生产、广告优化与数据自动化，在团队里快速把想法落地成结果。",
     positioningProofs: [
       "可自动化批量产出短视频、英文文案与广告优化建议",
       "从 0 到 1 搭建 AI 社群，自然增长 1000+",
@@ -152,27 +173,67 @@ const copyByLang: Record<Lang, Copy> = {
     phoneText: phoneDisplay,
     emailText: email,
     contactLead: "可合作方向：AI + 电商内容生产，提效、增长与运营。",
-    works: [
+    leadCase: {
+      title: "Amazon Ads 优化台",
+      desc: "把周度 Search Term Report 变成可执行的关键词动作，而不是重复的人肉判读。",
+      challenge:
+        "搜索词、CTR/CVR/ACOS 与浪费数据分散在多张表，导致每轮优化高度依赖人工经验，决策成本高。",
+      method:
+        "搭建周度循环：Excel 先算优先级，再由大模型判断相关性与意图，自动输出否定词与出价建议。",
+      result:
+        "将优化动作压缩为一次短评审，持续沉淀可复用的建议清单，支持广告账户滚动更新。",
+      tags: ["Amazon Ads", "搜索词分析", "自动化优化"],
+      link: "#amazon-ads-case",
+      linkText: "查看案例",
+      note: "注：案例数据已脱敏，仅保留真实流程与交互逻辑。",
+      metrics: [
+        { label: "周度处理", value: "2,000+ 搜索词" },
+        { label: "单轮耗时", value: "< 20 分钟" },
+        { label: "动作产出", value: "否词 + 出价建议" }
+      ]
+    },
+    supportCases: [
       {
         title: "AI 营销视频",
         desc: "使用剪映、AI 配音与 AI 数字人批量产出产品营销短视频。",
+        evidence: "形成可重复的视频模板流程，支撑站内外内容持续上新。",
         tags: ["AI 视频", "跨境电商", "内容运营"],
         link: "#video",
         linkText: "观看视频"
       },
       {
-        title: "Amazon Ads 优化台 Demo",
-        desc: "周度处理 Search Term Report：Excel 算 CTR/CVR/ACOS 与浪费优先级，大模型判相关性和意图，自动给出否定词与高转化词出价/匹配建议。",
-        tags: ["Amazon Ads", "搜索词分析", "自动化优化"],
-        link: "#amazon-ads-demo",
-        linkText: "观看演示"
-      },
-      {
         title: "AI 公益站页面",
-        desc: "独立搭建并持续运维 AI 公益站页面，为用户提供稳定服务入口。",
+        desc: "独立搭建并持续运维 AI 公益站页面，为用户与校园社群提供稳定入口。",
+        evidence: "在稳定服务基础上持续验证可收费模块，保持站点长期运营。",
         tags: ["网站", "AI", "运营"],
         link: "#site-preview",
         linkText: "查看预览"
+      }
+    ],
+    capabilities: [
+      {
+        pillar: "模块 01",
+        title: "创意智能工作室",
+        summary: "把脚本、视觉素材与 AI 配音统一编排，形成可复用的营销内容包。",
+        highlights: ["覆盖站内、社媒与投放素材的批量输出。", "模板资产沉淀，保证更新速度与风格稳定。"],
+        tools: ["OpenAI / Codex", "Claude", "Canva", "Photoshop", "剪映"],
+        outcome: "结果：周度创意产出可持续复用，素材准备周期显著缩短。"
+      },
+      {
+        pillar: "模块 02",
+        title: "增长决策引擎",
+        summary: "将搜索词原始数据转为可排序的否词与出价动作，减少人工筛读。",
+        highlights: ["周度意图聚类与浪费词剔除。", "评分逻辑和优化规则持续复用。"],
+        tools: ["Amazon Ads", "Excel", "Python", "Google Analytics"],
+        outcome: "结果：优化流程从大段人工检索，变为聚焦动作评审。"
+      },
+      {
+        pillar: "模块 03",
+        title: "商业交付系统",
+        summary: "让页面、脚本与运营流程在团队协作中保持稳定上线节奏。",
+        highlights: ["轻量页面与实用工具持续部署。", "文档、提示词与执行流程统一协同。"],
+        tools: ["Next.js", "Node.js", "Cloudflare Workers", "Vercel", "Notion", "Slack"],
+        outcome: "结果：跨内容与运营环节的交付连续性更强、断点更少。"
       }
     ]
   }
@@ -258,8 +319,11 @@ export default async function HomePage({
           </p>
         </section>
 
-        <section className="block reveal delay-3" id="about">
-          <p className="label">{t.introLabel}</p>
+        <section className="block chapter reveal delay-3" id="about">
+          <div className="section-head">
+            <span className="section-index">01</span>
+            <p className="label">{t.introLabel}</p>
+          </div>
           <h2 className="positioning-title">{t.positioningTitle}</h2>
           <p className="positioning-subtitle">{t.positioningSubtitle}</p>
           <ul className="positioning-proofs">
@@ -269,21 +333,73 @@ export default async function HomePage({
           </ul>
         </section>
 
-        <section className="block reveal delay-4" id="works">
-          <p className="label">{t.worksLabel}</p>
-          <div className="project-list">
-            {t.works.map((work) => (
+        <section className="block chapter reveal delay-4" id="works">
+          <div className="section-head">
+            <span className="section-index">02</span>
+            <p className="label">{t.worksLabel}</p>
+          </div>
+
+          <article className="lead-case">
+            <header className="lead-case-head">
+              <p className="lead-kicker">{t.caseLeadLabel}</p>
+              <h2>{t.leadCase.title}</h2>
+              <p>{t.leadCase.desc}</p>
+            </header>
+
+            <ul className="metric-strip" aria-label={lang === "zh" ? "主案例关键指标" : "Lead case metrics"}>
+              {t.leadCase.metrics.map((metric) => (
+                <li key={metric.label}>
+                  <span>{metric.label}</span>
+                  <strong>{metric.value}</strong>
+                </li>
+              ))}
+            </ul>
+
+            <div className="case-narrative">
+              <div className="case-block">
+                <p className="case-block-label">{t.caseProblemLabel}</p>
+                <p>{t.leadCase.challenge}</p>
+              </div>
+              <div className="case-block">
+                <p className="case-block-label">{t.caseMethodLabel}</p>
+                <p>{t.leadCase.method}</p>
+              </div>
+              <div className="case-block">
+                <p className="case-block-label">{t.caseResultLabel}</p>
+                <p>{t.leadCase.result}</p>
+              </div>
+            </div>
+
+            <footer className="lead-case-foot">
+              <div className="tags" aria-label={`${t.leadCase.title} tags`}>
+                {t.leadCase.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+              <a
+                className="case-link"
+                href={t.leadCase.link}
+                target={t.leadCase.link.startsWith("http") ? "_blank" : undefined}
+                rel={t.leadCase.link.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {t.leadCase.linkText}
+              </a>
+            </footer>
+            <p className="case-note">{t.leadCase.note}</p>
+          </article>
+
+          <div className="support-grid">
+            {t.supportCases.map((work) => (
               <a
                 key={work.title}
-                className="project-item"
+                className="support-item"
                 href={work.link}
                 target={work.link.startsWith("http") ? "_blank" : undefined}
                 rel={work.link.startsWith("http") ? "noreferrer" : undefined}
               >
-                <div className="project-header">
-                  <h2>{work.title}</h2>
-                </div>
+                <h3>{work.title}</h3>
                 <p>{work.desc}</p>
+                <p className="support-evidence">{work.evidence}</p>
                 <div className="tags" aria-label={`${work.title} tags`}>
                   {work.tags.map((tag) => (
                     <span key={tag}>{tag}</span>
@@ -297,32 +413,39 @@ export default async function HomePage({
 
         <ShowcaseCarousel lang={lang} />
 
-        <section className="block reveal delay-7" id="stack">
-          <p className="label">{t.stackLabel}</p>
-          <div className="icon-grid" aria-label={t.stackLabel}>
-            {techStack.map((item) => (
-              <div key={item.name} className="icon-tile" tabIndex={0} aria-label={item.name}>
-                <item.icon className="icon-mark" style={{ color: item.tone }} aria-hidden="true" />
-                <span className="icon-name">{item.name}</span>
-              </div>
+        <section className="block chapter reveal delay-8" id="stack">
+          <div className="section-head">
+            <span className="section-index">04</span>
+            <p className="label">{t.matrixLabel}</p>
+          </div>
+          <p className="section-subline">{t.matrixLead}</p>
+          <div className="capability-matrix" aria-label={t.matrixLabel}>
+            {t.capabilities.map((capability) => (
+              <article key={capability.title} className="capability-card">
+                <p className="capability-pillar">{capability.pillar}</p>
+                <h3>{capability.title}</h3>
+                <p>{capability.summary}</p>
+                <ul className="capability-highlights">
+                  {capability.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <div className="capability-tools" aria-label={`${capability.title} tools`}>
+                  {capability.tools.map((tool) => (
+                    <span key={tool}>{tool}</span>
+                  ))}
+                </div>
+                <p className="capability-outcome">{capability.outcome}</p>
+              </article>
             ))}
           </div>
         </section>
 
-        <section className="block reveal delay-8" id="toolbox">
-          <p className="label">{t.toolboxLabel}</p>
-          <div className="icon-grid icon-grid-tools" aria-label={t.toolboxLabel}>
-            {toolbox.map((item) => (
-              <div key={item.name} className="icon-tile" tabIndex={0} aria-label={item.name}>
-                <item.icon className="icon-mark" style={{ color: item.tone }} aria-hidden="true" />
-                <span className="icon-name">{item.name}</span>
-              </div>
-            ))}
+        <section className="block chapter reveal delay-9" id="contact">
+          <div className="section-head">
+            <span className="section-index">05</span>
+            <p className="label">{t.contactLabel}</p>
           </div>
-        </section>
-
-        <section className="block reveal delay-9" id="contact">
-          <p className="label">{t.contactLabel}</p>
           <p className="lead compact">{t.contactLead}</p>
           <div className="cta-row">
             <a href={`mailto:${email}`} className="cta-primary">
